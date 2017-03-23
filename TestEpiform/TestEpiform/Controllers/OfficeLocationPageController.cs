@@ -8,6 +8,7 @@ using EPiServer.Web.Mvc;
 using TestEpiform.Models.Pages;
 using TestEpiform.Models.Properties;
 using EPiServer.Personalization.Providers.MaxMind;
+using MaxMind.GeoIP2;
 
 namespace TestEpiform.Controllers
 {
@@ -18,16 +19,16 @@ namespace TestEpiform.Controllers
         public ActionResult Index(OfficeLocationPage currentPage)
         {
 
-            IList<OfficeLocated> model = GetOfficesFromSubPagesInEpiServer();
+            IList<OfficeLocationPage> model = GetOfficesFromSubPagesInEpiServer();
 
             ViewBag.ClientLocation = GetClientLocationByIp();
 
             return View(model);
         }
 
-        private OfficeLocated GetClientLocationByIp()
+        private OfficeLocationPage GetClientLocationByIp()
         {
-            OfficeLocated retval = new OfficeLocated();
+            OfficeLocationPage retval = new OfficeLocationPage();
 
             try
             {
@@ -63,14 +64,14 @@ namespace TestEpiform.Controllers
         }
 
 
-        private IList<OfficeLocated> GetOfficesFromSubPagesInEpiServer()
+        private IList<OfficeLocationPage> GetOfficesFromSubPagesInEpiServer()
         {
-            IList<OfficeLocated> officeLocations = new List<OfficeLocated>();
+            IList<OfficeLocationPage> officeLocations = new List<OfficeLocationPage>();
 
-            officeLocations.Add(new OfficeLocated() { OfficeLocationID = 1, AvdelningName = "Sollentuna Centrum", LocationX = 59.4283682, LocationY = 17.9507594 });
-            officeLocations.Add(new OfficeLocated() { OfficeLocationID = 2, AvdelningName = "Stinsen Häggvik", LocationX = 59.4367469, LocationY = 17.9362318 });
-            officeLocations.Add(new OfficeLocated() { OfficeLocationID = 3, AvdelningName = "Friends Arena", LocationX = 59.3717495, LocationY = 17.9908945 });
-            officeLocations.Add(new OfficeLocated() { OfficeLocationID = 4, AvdelningName = "Sergels Torg", LocationX = 59.3504345, LocationY = 18.0419199 });
+            officeLocations.Add(new OfficeLocationPage() { OfficeLocationID = 1, AvdelningName = "Sollentuna Centrum", LocationX = 59.4283682, LocationY = 17.9507594 });
+            officeLocations.Add(new OfficeLocationPage() { OfficeLocationID = 2, AvdelningName = "Stinsen Häggvik", LocationX = 59.4367469, LocationY = 17.9362318 });
+            officeLocations.Add(new OfficeLocationPage() { OfficeLocationID = 3, AvdelningName = "Friends Arena", LocationX = 59.3717495, LocationY = 17.9908945 });
+            officeLocations.Add(new OfficeLocationPage() { OfficeLocationID = 4, AvdelningName = "Sergels Torg", LocationX = 59.3504345, LocationY = 18.0419199 });
             //officeLocations.Add(new OfficeLocation() { OfficeLocationID = 5, Name = "Metamatrix", LocationX = 59.3159672, LocationY = 18.0347773 });
             //officeLocations.Add(new OfficeLocation() { OfficeLocationID = 6, Name = "Scandic Nyköping", LocationX = 58.7515653, LocationY = 17.0024674 });
             //officeLocations.Add(new OfficeLocation() { OfficeLocationID = 7, Name = "Sofiakyrkan Jönköping", LocationX = 57.7823193, LocationY = 14.1595065 });

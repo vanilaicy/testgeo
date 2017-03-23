@@ -1,6 +1,7 @@
-﻿
+﻿@using TestEpiform
+@using TestEpiform.Models
 
-@model TestEpiform.Models.Properties.OfficeLocated
+@model TestEpiform.Models.Pages.OfficeLocationPage
 
 
 <div class="row">
@@ -37,7 +38,7 @@
                 map = new GMap2(document.getElementById('map_canvas'));
                 var bounds = new GLatLngBounds();
 
-                @foreach(OfficeLocated office in Model) {
+                @foreach(OfficeLocationPage office in Model.Items) {
 				<text>@("p"+office.OfficeLocationID)=new GLatLng('@office.LocXString','@office.LocYString'); @("m"+office.OfficeLocationID)=new GMarker(@("p"+office.OfficeLocationID));</text>
 				<text>GEvent.addListener(@("m"+office.OfficeLocationID),'click',function() {@("m"+office.OfficeLocationID).openInfoWindowHtml('<html><table><tr><td>Kontor:&nbsp;</td><td>@office.AvdelningName</td></tr></table></html>');});</text>
 				<text>map.addOverlay(@("m"+office.OfficeLocationID));bounds.extend(@("p"+office.OfficeLocationID));</text>

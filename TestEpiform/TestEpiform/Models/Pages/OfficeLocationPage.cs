@@ -15,6 +15,34 @@ namespace TestEpiform.Models.Pages
     public class OfficeLocationPage : SitePageData
     {
 
+        public int OfficeLocationID { get; set; }
+
+        public string AvdelningName { get; set; }
+
+        public string Address { get; set; }
+
+        //X as latitude
+        public double LocationX { get; set; }
+
+        public string LocXString
+        {
+            get
+            {
+                return LocationX.ToString().Replace(",", ".");
+            }
+        }
+
+        // Y as longitude
+        public double LocationY { get; set; }
+        public string LocYString
+        {
+            get
+            {
+                return LocationY.ToString().Replace(",", ".");
+            }
+        }
+
+
         [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<OfficeLocated>))]
         public virtual IList<OfficeLocated> OfficeLocateds { get; set; }
     }
