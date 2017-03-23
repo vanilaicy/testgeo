@@ -1,0 +1,9 @@
+@model FormBlock
+
+<div class="Form__MainBody">
+
+
+    <h2 class="Form__Title" @Html.EditAttributes(m => m.Heading)>@Model.Heading</h2>
+    @Html.PropertyFor(x => x.CustomDescription)
+    @Html.PropertyFor(x => x.Form)
+</div>
